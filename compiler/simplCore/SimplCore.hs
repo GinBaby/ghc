@@ -284,8 +284,6 @@ getCoreToDo dflags
 
         simpl_phases,
 
-        runWhen exitification CoreDoExitify,
-
                 -- Phase 0: allow all Ids to be inlined now
                 -- This gets foldr inlined before strictness analysis
 
@@ -311,6 +309,8 @@ getCoreToDo dflags
             ],
 
         runWhen strictness demand_analyser,
+
+        runWhen exitification CoreDoExitify,
 
         runWhen full_laziness $
            CoreDoFloatOutwards FloatOutSwitches {
