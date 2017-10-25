@@ -310,8 +310,6 @@ getCoreToDo dflags
 
         runWhen strictness demand_analyser,
 
-        runWhen exitification CoreDoExitify,
-
         runWhen full_laziness $
            CoreDoFloatOutwards FloatOutSwitches {
                                  floatOutLambdas     = floatLamArgs dflags,
@@ -329,6 +327,8 @@ getCoreToDo dflags
                 -- We want CSE to follow the final full-laziness pass, because it may
                 -- succeed in commoning up things floated out by full laziness.
                 -- CSE used to rely on the no-shadowing invariant, but it doesn't any more
+
+        runWhen exitification CoreDoExitify,
 
         runWhen do_float_in CoreDoFloatInwards,
 
