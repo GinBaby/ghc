@@ -312,8 +312,6 @@ getCoreToDo dflags
 
         runWhen strictness demand_analyser,
 
-        runWhen exitification CoreDoExitify,
-
         runWhen full_laziness $
            CoreDoFloatOutwards FloatOutSwitches {
                                  floatOutLambdas     = floatLamArgs dflags,
