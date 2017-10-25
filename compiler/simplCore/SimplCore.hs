@@ -328,8 +328,6 @@ getCoreToDo dflags
                 -- succeed in commoning up things floated out by full laziness.
                 -- CSE used to rely on the no-shadowing invariant, but it doesn't any more
 
-        runWhen exitification CoreDoExitify,
-
         runWhen do_float_in CoreDoFloatInwards,
 
         maybe_rule_check (Phase 0),
@@ -346,6 +344,8 @@ getCoreToDo dflags
         runWhen spec_constr CoreDoSpecConstr,
 
         maybe_rule_check (Phase 0),
+
+        runWhen exitification CoreDoExitify,
 
         -- Final clean-up simplification:
         simpl_phase 0 ["final"] max_iter,
